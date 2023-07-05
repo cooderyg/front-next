@@ -7,4 +7,7 @@ export const MyEmail = styled.span`
 
 export const MyInput = styled.input`
   border-color: red;
+  @media (max-width: 768px) {
+    border-color: yellow;
+  }
 `;
