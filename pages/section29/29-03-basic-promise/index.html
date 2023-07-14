@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise 연습!!</title>
+  </head>
+  <script>
+    const onClickThen = () => {
+      new Promise((resolve, reject) => {
+        try {
+          // 여기서 API 요청을 한다면??
+          setTimeout(() => {
+            const response = "갱얼쥐"; // 2초가 걸려서 백엔드에서 "갱얼쥐" 데이터를 받아옴
+            resolve(response); // 성공하면 이거 실행
+          }, 2000);
+        } catch (error) {
+          reject(error.message); // 실패하면 이거 실행
+        }
+      });
+    };
+
+    const onClickAwait = async () => {
+      const result = await new Promise((resolve, reject) => {
+        try {
+          // 여기서 API 요청을 한다면??
+          setTimeout(() => {
+            const response = "갱얼쥐"; // 2초가 걸려서 백엔드에서 "갱얼쥐" 데이터를 받아옴
+            resolve(response); // 성공하면 이거 실행
+          }, 2000);
+        } catch (error) {
+          reject("실패하였습니다."); // 실패하면 이거 실행
+        }
+      })
+        .then((res) => {
+          console.log(res); // 강아지
+        })
+        .catch((error) => {
+          console.log(error); // error.message
+        });
+
+      console.log(result);
+    };
+  </script>
+  <body>
+    <button onclick="onClickThen()">Promise 실행하기(.then)</button>
+    <button onclick="onClickAwait()">Promise 실행하기(.await)</button>
+  </body>
+</html>
